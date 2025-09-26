@@ -1,14 +1,18 @@
 #include <Arduino.h>
+#include <WiFi.h>
+#include <WiFiClientSecure.h>
+#include <UniversalTelegramBot.h>
+#include <ArduinoJson.h>
 
-int myPin = 18;
-int on = HIGH;
+int relayControlPin = 18;
+int relayState = HIGH;
 
 void setup() {
-  pinMode(myPin, OUTPUT);
+  pinMode(relayControlPin, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(myPin, on);
-  on ^= 1;
+  digitalWrite(relayControlPin, relayState);
+  relayState ^= 1;
   sleep(2);
 }
