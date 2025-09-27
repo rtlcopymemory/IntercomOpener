@@ -58,6 +58,7 @@ void disableBluetooth() {
 void handleMessages(int numNewMessages) {
   while (numNewMessages) {
     String chat_id = String(bot.messages[0].chat_id);
+    numNewMessages = bot.getUpdates(bot.last_message_received + 1);
     if (chat_id != ownerID){
       bot.sendMessage(chat_id, "Unauthorized user", "");
       continue;
@@ -78,7 +79,5 @@ void handleMessages(int numNewMessages) {
       sleep(1);
       digitalWrite(relayControlPin, LOW);
     }
-
-    numNewMessages = bot.getUpdates(bot.last_message_received + 1);
   }
 }
